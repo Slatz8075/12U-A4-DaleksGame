@@ -1,6 +1,7 @@
 
-/** This class models the Doctor in the game. A Doctor has
- *  a position and can move to a new position.
+/**
+ * This class models the Doctor in the game. A Doctor has a position and can
+ * move to a new position.
  */
 public class Doctor {
 
@@ -13,7 +14,8 @@ public class Doctor {
      * @param theCol The column this Doctor starts at.
      */
     public Doctor(int theRow, int theCol) {
-
+        this.row = row;
+        this.col = col;
     }
 
     /**
@@ -28,6 +30,44 @@ public class Doctor {
      * @param newCol The column the player clicked on.
      */
     public void move(int newRow, int newCol) {
+        //check to see if the click was where the doctor currently is
+        if (newRow == getRow() && newCol == getCol()) {
+            //it is so do nothing
+            //now check all the directions
+        } else if (newRow == getRow()+1 && newCol == getCol()) {
+            //move down
+            row++;
+        } else if (newRow == getRow()-1 && newCol == getCol()) {
+            //move up
+            row--;
+        } else if (newRow == getRow() && newCol == getCol()+1) {
+            //move right
+            col++;
+        } else if (newRow == getRow() && newCol == getCol()-1) {
+            //move left
+            col--;
+        } else if (newRow == getRow()+1 && newCol == getCol()+1) {
+            //move right and down 1
+            row++;
+            col++;
+        } else if (newRow == getRow()+1 && newCol == getCol()-1) {
+            //move left and down 1
+            row++;
+            col--;
+        } else if (newRow == getRow()-1 && newCol == getCol()+1) {
+            //move right and up 1
+            row--;
+            col++;
+        } else if (newRow == getRow()-1 && newCol == getCol()-1) {
+            //move left and up 1
+            row--;
+            col--;
+            //now since none of these if statments have triggered, teleport him to a random spot
+        } else {
+            //"teleport" the doctor to a random location within the 12 by 12 grid
+            row = (int)(Math.random()*12);
+            col = (int)(Math.random()*12);
+        }
 
     }
 
@@ -37,7 +77,7 @@ public class Doctor {
      * @return This Doctor's row.
      */
     public int getRow() {
-
+        return this.row;
     }
 
     /**
@@ -46,7 +86,6 @@ public class Doctor {
      * @return This Doctor's column.
      */
     public int getCol() {
-
+        return this.col;
     }
-
 }

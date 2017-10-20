@@ -14,7 +14,8 @@ public class Dalek {
      * @param theCol The column this Dalek starts at.
      */
     public Dalek(int theRow, int theCol) {
-
+        this.row = row;
+        this.col = col;
     }
 
     /**
@@ -26,6 +27,39 @@ public class Dalek {
      * @param doc The Doctor to move towards.
      */
     public void advanceTowards(Doctor doc) {
+        int rowGoal = doc.getRow();
+        int colGoal = doc.getCol();
+        
+        //compare dalek's row and doctor's row
+        if(row < doc.getRow() && col == doc.getCol()){
+            //move down
+            row++;
+        }else if(row > doc.getRow() && col == doc.getCol()){
+            //move up
+            row--;
+        }else if(row == doc.getRow() && col < doc.getCol()){
+            //move right
+            col++;
+        }else if(row == doc.getRow() && col > doc.getCol()){
+            //move left
+            row--;
+        }else if(row < doc.getRow() && col < doc.getCol()){
+            //move down, and right
+            row++;
+            col++;
+        }else if(row > doc.getRow() && col < doc.getCol()){
+            //move up, and right
+            row--;
+            col++;
+        }else if(row > doc.getRow() && col > doc.getCol()){
+            //move up, and left
+            row--;
+            col--;
+        }else if(row < doc.getRow() && col > doc.getCol()){
+            //move down, and left
+            row++;
+            col--;
+        }
 
     }
 
@@ -35,7 +69,7 @@ public class Dalek {
      * @return This Dalek's row.
      */
     public int getRow() {
-
+        return this.row;
     }
 
     /**
@@ -44,7 +78,7 @@ public class Dalek {
      * @return This Dalek's column.
      */
     public int getCol() {
-
+        return this.col;
     }
 
     /**
@@ -59,8 +93,10 @@ public class Dalek {
      *
      * @return true if this Dalek has crashed, false otherwise
      */
+    /*
     public boolean hasCrashed() {
 
     }
+    */
 
 }
