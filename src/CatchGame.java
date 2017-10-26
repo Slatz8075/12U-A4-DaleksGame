@@ -15,27 +15,26 @@ public class CatchGame {
     //create the board 12 by 12
     Board b = new Board(12, 12);
     //create the doctor at a random row and column
-    Doctor Doctor = new Doctor((int) (Math.random() * 12), (int) (Math.random() * 12));
+    Doctor Doctor = new Doctor((int)(Math.random() * 12), (int)(Math.random() * 12));
     //create an array for the daleks that will be created in the constructer area
     Dalek[] Daleks = new Dalek[3];
-
+    
     /**
      * The constructor for the game. Use it to initialize your game variables.
      * (create people, set positions, etc.)
      */
     public CatchGame() {
 
+        //put down a peg for the doctor
+        b.putPeg(Color.GREEN, Doctor.getRow(), Doctor.getCol());
+        
         //create an array of 3 daleks at 3 random spots
         for (int i = 0; i < 3; i++) {
             //create a new dalek in the array at a random row and column
-            Daleks[i] = new Dalek((int) (Math.random() * 12), (int) (Math.random() * 12));
+            Daleks[i] = new Dalek((int)(Math.random()*12), (int)(Math.random()*12));
             //set a peg at this position
             b.putPeg(Color.BLACK, Daleks[i].getRow(), Daleks[i].getCol());
         }
-
-        //put down a peg for the doctor
-        b.putPeg(Color.GREEN, Doctor.getRow(), Doctor.getCol());
-
     }
 
     /**
@@ -53,20 +52,21 @@ public class CatchGame {
                 //finally set a new peg at their new position
                 b.putPeg(Color.BLACK, Daleks[i].getRow(), Daleks[i].getCol());
             }
+            
 
             //This is the process for moving the doctor
 
-            //remove the peg the doctor is at
-            b.removePeg(Doctor.getRow(), Doctor.getCol());
-
-            //recive a click from the user
+            //recieve a click from the user
             Coordinate click = b.getClick();
             //store the click's row and col
             int clickRow = click.getRow();
             int clickCol = click.getCol();
-
+            //remove the peg the doctor is at
+            b.removePeg(Doctor.getRow(), Doctor.getCol());
             //move the doctor with this data
             Doctor.move(clickRow, clickCol);
+            //mark this with a peg
+            b.putPeg(Color.GREEN, Doctor.getRow(), Doctor.getCol());
 
             //cycle through all the daleks - checking their positions with the docotr as well as that of each other
             for (int DalekNum = 0; DalekNum > 3; DalekNum++) {
