@@ -14,8 +14,8 @@ public class Doctor {
      * @param theCol The column this Doctor starts at.
      */
     public Doctor(int theRow, int theCol) {
-        this.row = theRow;
-        this.col = theCol;
+        row = theRow;
+        col = theCol;
     }
 
     /**
@@ -34,12 +34,12 @@ public class Doctor {
         if (newRow == row && newCol == col) {
             //it is so do nothing
             //now check to see if the click is larger than the bounds of the doctor
-        } else if ((newRow != row+1 || newRow != row-1) || (newCol != col+1 || newCol != col-1)) {
+        } else if ((newRow != row+1 && newRow != row-1) && (newCol != col+1 && newCol != col-1)) {
             //"teleport" the doctor to a random location within the 12 by 12 grid
             row = (int)(Math.random()*12);
             col = (int)(Math.random()*12);
         } else {
-            //therefore the click is withiin bounds, move the doctor to the click
+            //therefore the click is within bounds, move the doctor to the click
             row = newRow;
             col = newCol;
         }
@@ -51,7 +51,7 @@ public class Doctor {
      * @return This Doctor's row.
      */
     public int getRow() {
-        return this.row;
+        return row;
     }
 
     /**
@@ -60,6 +60,6 @@ public class Doctor {
      * @return This Doctor's column.
      */
     public int getCol() {
-        return this.col;
+        return col;
     }
 }

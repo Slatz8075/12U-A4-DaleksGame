@@ -69,7 +69,7 @@ public class CatchGame {
             b.putPeg(Color.GREEN, Doctor.getRow(), Doctor.getCol());
 
             //cycle through all the daleks - checking their positions with the docotr as well as that of each other
-            for (int DalekNum = 0; DalekNum > 3; DalekNum++) {
+            for (int DalekNum = 0; DalekNum < 3; DalekNum++) {
                 //check to see if the doctors row and col is the same as the Dalek's row and col
                 if ((Daleks[DalekNum].getRow() == Doctor.getRow()) && (Daleks[DalekNum].getCol() == Doctor.getCol())) {
                     //it is so the game has ended
@@ -86,7 +86,8 @@ public class CatchGame {
                     DalekCompare = 0;
                 }
                 //check the row and col of the dalek at question with the dalek check out lined in the above parameters
-                if (Daleks[DalekNum].getRow() == Daleks[DalekCompare].getRow() && Daleks[DalekNum].getCol() == Daleks[DalekCompare].getCol()) {
+                if ((Daleks[DalekNum].getRow() == Daleks[DalekCompare].getRow()) && (Daleks[DalekNum].getCol() == Daleks[DalekCompare].getCol())) {
+                    System.out.println("daleks have crashed");
                     //their positions are the same so set their state to crashed, and chenge their colour to red
                     Daleks[DalekNum].crash();
                     b.putPeg(Color.RED, Daleks[DalekNum].getRow(), Daleks[DalekNum].getCol());
