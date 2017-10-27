@@ -44,8 +44,8 @@ public class CatchGame {
     public void playGame() {
 
         //let the loop run while there is still one dalek alive
-        while ((Daleks[0].hasCrashed() == false) || (Daleks[1].hasCrashed() == false) || (Daleks[2].hasCrashed() == false)) {
-            
+        while (!Daleks[0].hasCrashed() || !Daleks[1].hasCrashed() || !Daleks[2].hasCrashed()) {
+
             //MOVE THE DOCTOR
             //recieve a click from the user
             Coordinate click = b.getClick();
@@ -65,7 +65,7 @@ public class CatchGame {
 
                 //MOVE THE DALEK
                 //only move the dalek if they have not crashed yet
-                if (Daleks[DalekNum].hasCrashed() == false) {
+                if (!Daleks[DalekNum].hasCrashed()) {
                     //remove the peg they are currently at
                     b.removePeg(Daleks[DalekNum].getRow(), Daleks[DalekNum].getCol());
                     //actually move the dalek, towards the doctor
@@ -96,6 +96,8 @@ public class CatchGame {
                 //check to see if the doctors row and col is the same as the Dalek's row and col
                 if ((Daleks[DalekNum].getRow() == Doctor.getRow()) && (Daleks[DalekNum].getCol() == Doctor.getCol())) {
                     //it is so the game has ended
+                    //set the doctor to be yellow
+                    b.putPeg(Color.YELLOW, Doctor.getRow(), Doctor.getCol());
                     //set all of the dalek's states to crashed so the main while loop will be cut
                     for (int DCrash = 0; DCrash < 3; DCrash++) {
                         //crash the Dalek
