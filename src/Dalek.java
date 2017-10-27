@@ -30,36 +30,54 @@ public class Dalek {
     public void advanceTowards(Doctor doc) {
 
         //allow the dalek to move only if they have not crashed yet
-        if (hasCrashed() == false) {
-            //compare dalek's row and col against doctor's row and col then adjust the dalek's position accordingly
-            if (row < doc.getRow() && col == doc.getCol()) {
-                //move down
-                row++;
-            } else if (row > doc.getRow() && col == doc.getCol()) {
-                //move up
-                row--;
-            } else if (row == doc.getRow() && col < doc.getCol()) {
-                //move right
-                col++;
-            } else if (row == doc.getRow() && col > doc.getCol()) {
-                //move left
-                row--;
-            } else if (row < doc.getRow() && col < doc.getCol()) {
-                //move down, and right
-                row++;
-                col++;
-            } else if (row > doc.getRow() && col < doc.getCol()) {
-                //move up, and right
-                row--;
-                col++;
-            } else if (row > doc.getRow() && col > doc.getCol()) {
-                //move up, and left
-                row--;
-                col--;
-            } else if (row < doc.getRow() && col > doc.getCol()) {
-                //move down, and left
-                row++;
-                col--;
+        if (!hasCrashed()) {
+            //first check if the dalek is in the same row as the Doctor
+            if(row == doc.getRow()){
+                //now check to see if the column in this row is greater or less than the daleks
+                if(col > doc.getCol()){
+                    //thus the column is less that daleks so move left
+                    col--;
+                } else {
+                    //therefore the column is greater than the daleks so move right
+                    col++;
+                }
+                //second check to see if the dalek is in the same column as the Doctor
+            } else if(col == doc.getCol()){
+                //now check to see if the row in this column is greater or less than the daleks
+                if(row > doc.getRow()){
+                    //thus the row is less that daleks so move up
+                    row--;
+                } else {
+                    //therefore the row is greater than the daleks so move down
+                    row++;
+                }
+            }else {
+                //this means the dalek needs to travel in a diagonal direction
+                //break it down first into moving up or down, then left or right
+                //Should the dalek move down?
+                if(row < doc.getRow()){
+                    //It should! - move down
+                    row++;
+                    //now should it move right?
+                    if(col < doc.getCol()){
+                        //yes it should move right
+                        col++;
+                    }else{
+                        // no instead it must move left
+                        col--;
+                    }  
+                } else {
+                    //it shouldn't so move up
+                    row--;
+                    //now should it move right?
+                    if(col < doc.getCol()){
+                        //yes it should move right
+                        col++;
+                    }else{
+                        // no instead it must move left
+                        col--;
+                    }  
+                }
             }
         }
     }
@@ -70,6 +88,7 @@ public class Dalek {
      * @return This Dalek's row.
      */
     public int getRow() {
+        //return row
         return row;
     }
 
@@ -79,6 +98,7 @@ public class Dalek {
      * @return This Dalek's column.
      */
     public int getCol() {
+        //return column
         return col;
     }
 

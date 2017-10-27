@@ -62,17 +62,6 @@ public class CatchGame {
             //DALEK DOING (checking daleks with each other, and the Doctor, and Moving them) 
             //create a for loop to cycle through each dalek
             for (int DalekNum = 0; DalekNum < 3; DalekNum++) {
-
-                //MOVE THE DALEK
-                //only move the dalek if they have not crashed yet
-                if (!Daleks[DalekNum].hasCrashed()) {
-                    //remove the peg they are currently at
-                    b.removePeg(Daleks[DalekNum].getRow(), Daleks[DalekNum].getCol());
-                    //actually move the dalek, towards the doctor
-                    Daleks[DalekNum].advanceTowards(Doctor);
-                    //finally set a new peg at their new position
-                    b.putPeg(Color.BLACK, Daleks[DalekNum].getRow(), Daleks[DalekNum].getCol());
-                }
                 
                 //CHECK THE DALEK"S POSITIONS WITH EACH OTHER
                 //create a integer for the current dalek to compare with
@@ -90,6 +79,17 @@ public class CatchGame {
                     b.putPeg(Color.RED, Daleks[DalekNum].getRow(), Daleks[DalekNum].getCol());
                     Daleks[DalekCompare].crash();
                     b.putPeg(Color.RED, Daleks[DalekCompare].getRow(), Daleks[DalekCompare].getCol());
+                }
+                
+                //MOVE THE DALEK
+                //only move the dalek if they have not crashed yet
+                if (!Daleks[DalekNum].hasCrashed()) {
+                    //remove the peg they are currently at
+                    b.removePeg(Daleks[DalekNum].getRow(), Daleks[DalekNum].getCol());
+                    //actually move the dalek, towards the doctor
+                    Daleks[DalekNum].advanceTowards(Doctor);
+                    //finally set a new peg at their new position
+                    b.putPeg(Color.BLACK, Daleks[DalekNum].getRow(), Daleks[DalekNum].getCol());
                 }
 
                 //CHECK THE DALEK'S POSITIONS WITH THE DOCTOR'S

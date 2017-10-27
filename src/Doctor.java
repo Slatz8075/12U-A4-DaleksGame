@@ -14,6 +14,7 @@ public class Doctor {
      * @param theCol The column this Doctor starts at.
      */
     public Doctor(int theRow, int theCol) {
+        //set this classes row and column equal to what is passed in
         row = theRow;
         col = theCol;
     }
@@ -51,6 +52,7 @@ public class Doctor {
      * @return This Doctor's row.
      */
     public int getRow() {
+        //return row
         return row;
     }
 
@@ -60,6 +62,7 @@ public class Doctor {
      * @return This Doctor's column.
      */
     public int getCol() {
+        //return column
         return col;
     }
 }
