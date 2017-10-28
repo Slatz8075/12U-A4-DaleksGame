@@ -116,14 +116,7 @@ public class Dalek {
      * @return true if this Dalek has crashed, false otherwise
      */
     public boolean hasCrashed() {
-        //is 'hasCrashed' true
-        if (hasCrashed == true) {
-            //return such
-            return true;
-            //it isn't
-        } else {
-            //so return false
-            return false;
-        }
+        //tell the user the state of hasCrashed;
+        return hasCrashed;
     }
 }

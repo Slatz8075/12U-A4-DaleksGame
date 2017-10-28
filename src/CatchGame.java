@@ -45,7 +45,7 @@ public class CatchGame {
 
         //let the loop run while there is still one dalek alive
         while (!Daleks[0].hasCrashed() || !Daleks[1].hasCrashed() || !Daleks[2].hasCrashed()) {
-
+            
             //MOVE THE DOCTOR
             //recieve a click from the user
             Coordinate click = b.getClick();
@@ -58,30 +58,11 @@ public class CatchGame {
             Doctor.move(clickRow, clickCol);
             //mark this with a peg
             b.putPeg(Color.GREEN, Doctor.getRow(), Doctor.getCol());
-            
-            //DALEK DOING (checking daleks with each other, and the Doctor, and Moving them) 
+
+            //DALEK MOVING
             //create a for loop to cycle through each dalek
-            for (int DalekNum = 0; DalekNum < 3; DalekNum++) {
-                
-                //CHECK THE DALEK"S POSITIONS WITH EACH OTHER
-                //create a integer for the current dalek to compare with
-                int DalekCompare = DalekNum + 1;
-                //check to see if the dalek checker is at a dalek that is not in the array
-                if (DalekNum == 2) {
-                    //it is so cycle back to compare with the first Dalek
-                    DalekCompare = 0;
-                }
-                //check the row and col of the dalek of question with the dalek check out lined in the above parameters
-                if ((Daleks[DalekNum].getRow() == Daleks[DalekCompare].getRow()) && (Daleks[DalekNum].getCol() == Daleks[DalekCompare].getCol())) {
-                    System.out.println("daleks have crashed");
-                    //their positions are the same so set their states to crashed, and chenge their colours to red
-                    Daleks[DalekNum].crash();
-                    b.putPeg(Color.RED, Daleks[DalekNum].getRow(), Daleks[DalekNum].getCol());
-                    Daleks[DalekCompare].crash();
-                    b.putPeg(Color.RED, Daleks[DalekCompare].getRow(), Daleks[DalekCompare].getCol());
-                }
-                
-                //MOVE THE DALEK
+            for (int DalekNum = 0; DalekNum < Daleks.length; DalekNum++) {
+            //MOVE THE DALEK
                 //only move the dalek if they have not crashed yet
                 if (!Daleks[DalekNum].hasCrashed()) {
                     //remove the peg they are currently at
@@ -91,6 +72,32 @@ public class CatchGame {
                     //finally set a new peg at their new position
                     b.putPeg(Color.BLACK, Daleks[DalekNum].getRow(), Daleks[DalekNum].getCol());
                 }
+            }
+            
+            //DALEK CHECKING (Checking the daleks with eachother and the doctor
+            //create a for loop to cycle through each dalek
+            for (int DalekNum = 0; DalekNum < Daleks.length; DalekNum++) {
+                
+                //CHECK THE DALEK'S POSITIONS WITH EACH OTHER
+                //create a integer for the current dalek to compare with
+                int DalekCompare = DalekNum + 1;
+                //check to see if the dalek checker is at a dalek that is not in the array
+                if (DalekNum == 2) {
+                    //it is so cycle back to compare with the first Dalek
+                    DalekCompare = 0;
+                }
+                //check the row and col of the dalek of question with the dalek compare out lined in the above parameters
+                if ((Daleks[DalekNum].getRow() == Daleks[DalekCompare].getRow()) && (Daleks[DalekNum].getCol() == Daleks[DalekCompare].getCol())) {
+                    //their positions are the same so set their states to crashed, and change put a peg on top of the crash
+                    Daleks[DalekNum].crash();
+                    Daleks[DalekCompare].crash();
+                    b.putPeg(Color.RED, Daleks[DalekNum].getRow(), Daleks[DalekNum].getCol());
+                }
+                //now check if all of the daleks have crashed
+                if ((Daleks[0].hasCrashed() && Daleks[1].hasCrashed() && Daleks[2].hasCrashed())){
+                    b.displayMessage("Game Over: all Daleks have crashed");
+                }
+
 
                 //CHECK THE DALEK'S POSITIONS WITH THE DOCTOR'S
                 //check to see if the doctors row and col is the same as the Dalek's row and col
@@ -99,7 +106,7 @@ public class CatchGame {
                     //set the doctor to be yellow
                     b.putPeg(Color.YELLOW, Doctor.getRow(), Doctor.getCol());
                     //set all of the dalek's states to crashed so the main while loop will be cut
-                    for (int DCrash = 0; DCrash < 3; DCrash++) {
+                    for (int DCrash = 0; DCrash < Daleks.length; DCrash++) {
                         //crash the Dalek
                         Daleks[DCrash].crash();
                     }
