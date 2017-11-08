@@ -45,7 +45,7 @@ public class CatchGame {
 
         //let the loop run while there is still one dalek alive
         while (!Daleks[0].hasCrashed() || !Daleks[1].hasCrashed() || !Daleks[2].hasCrashed()) {
-            
+
             //MOVE THE DOCTOR
             //recieve a click from the user
             Coordinate click = b.getClick();
@@ -62,7 +62,7 @@ public class CatchGame {
             //DALEK MOVING
             //create a for loop to cycle through each dalek
             for (int DalekNum = 0; DalekNum < Daleks.length; DalekNum++) {
-            //MOVE THE DALEK
+                //MOVE THE DALEK
                 //only move the dalek if they have not crashed yet
                 if (!Daleks[DalekNum].hasCrashed()) {
                     //remove the peg they are currently at
@@ -73,11 +73,11 @@ public class CatchGame {
                     b.putPeg(Color.BLACK, Daleks[DalekNum].getRow(), Daleks[DalekNum].getCol());
                 }
             }
-            
+
             //DALEK CHECKING (Checking the daleks with eachother and the doctor
             //create a for loop to cycle through each dalek
             for (int DalekNum = 0; DalekNum < Daleks.length; DalekNum++) {
-                
+
                 //CHECK THE DALEK'S POSITIONS WITH EACH OTHER
                 //create a integer for the current dalek to compare with
                 int DalekCompare = DalekNum + 1;
@@ -94,11 +94,11 @@ public class CatchGame {
                     b.putPeg(Color.RED, Daleks[DalekNum].getRow(), Daleks[DalekNum].getCol());
                 }
                 //now check if all of the daleks have crashed
-                if ((Daleks[0].hasCrashed() && Daleks[1].hasCrashed() && Daleks[2].hasCrashed())){
+                if ((Daleks[0].hasCrashed() && Daleks[1].hasCrashed() && Daleks[2].hasCrashed())) {
+                    //tell the user the out come of the game
                     b.displayMessage("Game Over: all Daleks have crashed");
+                    System.out.println("this has triggered");
                 }
-
-
                 //CHECK THE DALEK'S POSITIONS WITH THE DOCTOR'S
                 //check to see if the doctors row and col is the same as the Dalek's row and col
                 if ((Daleks[DalekNum].getRow() == Doctor.getRow()) && (Daleks[DalekNum].getCol() == Doctor.getCol())) {
@@ -115,6 +115,5 @@ public class CatchGame {
                 }
             }
         }
-        //since we are out of the while loop all the daleks have crashed
     }
 }
